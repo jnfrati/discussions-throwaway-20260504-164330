@@ -1,0 +1,171 @@
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Issue Triage
+
+        Use this category for bugs, regressions, unexpected behavior, or reports that may become actionable issues after validation.
+
+        NetBird uses a discussion-first process: DevRel and maintainers review reports here first, attempt to reproduce them, and create issues only when they are validated and actionable. Clear reproduction steps, environment details, and logs make it much easier to promote a discussion into an issue.
+
+        Please do not include secrets, tokens, private keys, internal hostnames, or public IPs unless you intentionally want them public. Security vulnerabilities should be reported through the repository security policy instead of public discussions.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Before posting
+      options:
+        - label: I searched existing discussions and issues, including closed items.
+          required: true
+        - label: I reviewed the relevant NetBird troubleshooting documentation.
+          required: true
+        - label: I confirmed this still happens on a supported or current NetBird version.
+          required: true
+        - label: I can provide enough detail for someone else to try to reproduce the behavior.
+          required: true
+        - label: I removed or anonymized sensitive data from logs, screenshots, and configuration.
+          required: true
+
+  - type: dropdown
+    id: report-type
+    attributes:
+      label: What kind of problem is this?
+      multiple: true
+      options:
+        - Bug / regression
+        - Peer connectivity
+        - DNS
+        - Routes / exit nodes
+        - NetBird SSH
+        - Relay
+        - Self-hosted deployment
+        - Login / authentication / IdP
+        - Dashboard / Admin UI
+        - Client / Agent
+        - Mobile app
+        - API
+        - Documentation
+        - Other / not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: deployment
+    attributes:
+      label: Deployment type
+      options:
+        - NetBird Cloud
+        - Self-hosted - quickstart script
+        - Self-hosted - advanced/custom deployment
+        - Local development build
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Operating system or environment
+      multiple: true
+      options:
+        - Linux
+        - macOS
+        - Windows
+        - Android
+        - iOS
+        - FreeBSD
+        - OpenWRT
+        - Docker
+        - Kubernetes
+        - Synology
+        - Browser
+        - Other / not sure
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: NetBird version
+      description: Run `netbird version` where applicable. For self-hosted deployments, include management, signal, relay, and dashboard versions if relevant.
+      placeholder: "Example: client 0.30.2, management 0.30.2"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Briefly describe the problem.
+      placeholder: What is happening?
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current behavior
+      description: What happens now? Include exact errors, timeouts, UI messages, or failed commands when possible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Provide the smallest reliable reproduction you can. If the issue is intermittent, describe frequency and timing.
+      placeholder: |
+        1. Configure ...
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and topology
+      description: Include relevant network topology, IdP/provider, reverse proxy, firewall, DNS, routes, or policy details. Redact sensitive values.
+      placeholder: |
+        - Peer A:
+        - Peer B:
+        - Same LAN or different networks:
+        - NAT/CGNAT/corporate firewall/mobile network:
+        - Other VPN, firewall, DNS, or endpoint security software:
+        - Self-hosted components and reverse proxy, if applicable:
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs, status output, or debug bundle
+      description: |
+        For client issues, include anonymized output from `netbird status -dA`.
+        If possible, create a debug bundle and share the upload key from `netbird debug for 1m -AS -U`.
+        Uploaded debug bundles are automatically deleted after 30 days.
+      render: shell
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Help us understand priority. How many users, peers, environments, or workflows are affected? Is there a workaround?
+      placeholder: |
+        - Affected users/peers:
+        - Business or production impact:
+        - Workaround available:
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add links to related discussions, issues, docs, screenshots, recordings, or anything else that may help validation.
