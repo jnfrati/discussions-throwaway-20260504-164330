@@ -4,30 +4,24 @@ body:
       value: |
         ## Issue Triage
 
-        Use this category only for reproducible bugs and regressions in NetBird.
+        Use this category for reproducible bugs and regressions in NetBird.
 
-        Before posting, please check the pinned "How to use discussions" announcement and search existing discussions/issues. If you need help configuring NetBird, diagnosing a problem that is not yet reproducible, or understanding expected behavior, use Q&A / Support first.
+        The more context you include, the faster we can validate and act on your report. If you're not sure whether something is a bug, **Q&A / Support** is a good starting point — we can always move the conversation here once we've confirmed it's a product issue.
 
-        Intermittent issues are welcome only when you can describe the trigger, frequency, timing, and provide logs/debug evidence.
+        Intermittent issues are useful too. Include the trigger, frequency, timing, and any logs or debug evidence you have, and we'll work from there.
 
-        DevRel or maintainers may redirect, merge, or close discussions that are duplicates, support/configuration questions, or missing reproduction details. Validated reports may be promoted to GitHub issues.
-
-        Please do not include secrets, tokens, private keys, internal hostnames, or public IPs unless you intentionally want them public. Security vulnerabilities should be reported through the repository security policy instead of public discussions.
+        Please don't include secrets, tokens, private keys, internal hostnames, or public IPs. Security vulnerabilities should be reported through the repository security policy rather than a public discussion.
 
   - type: checkboxes
     id: preflight
     attributes:
       label: Before posting
       options:
-        - label: I searched existing discussions and issues, including closed items.
+        - label: I searched existing discussions and issues, including closed ones, and checked the relevant docs.
           required: true
-        - label: I reviewed the relevant NetBird documentation or troubleshooting guide, if applicable.
+        - label: I believe this is a product bug rather than a configuration or setup question.
           required: true
-        - label: This is a reproducible bug or regression, not a configuration, usage, or how-to question.
-          required: true
-        - label: I can reproduce this issue, or it is intermittent and I included trigger/frequency/timing details below.
-          required: true
-        - label: I reproduced this on a current/supported NetBird version, or explained below why I cannot upgrade.
+        - label: I can reproduce this issue, or for intermittent issues I've included trigger, frequency, and timing details below.
           required: true
         - label: I removed or anonymized sensitive data from logs, screenshots, and configuration.
           required: true
@@ -40,6 +34,7 @@ body:
       multiple: true
       options:
         - Client / Agent
+        - Reverse Proxy
         - CLI
         - Desktop UI
         - Mobile app
@@ -160,7 +155,7 @@ body:
     id: reproduction
     attributes:
       label: Steps to reproduce
-      description: Provide the smallest set of steps that reliably reproduces the bug. If the issue is intermittent, include the trigger, frequency, timing, and relevant timestamps. If you cannot reproduce it or describe when it happens, use Q&A / Support first.
+      description: Provide the smallest set of steps that reliably reproduces the bug. If the issue is intermittent, include the trigger, frequency, timing, and relevant timestamps.
       placeholder: |
         1. Configure ...
         2. Run ...
@@ -208,11 +203,10 @@ body:
     attributes:
       label: Logs, status output, or debug evidence
       description: |
-        Required when applicable. For client, connectivity, DNS, routes, SSH, relay/signal, or self-hosted reports, include anonymized logs/status output or a debug bundle. If logs are not relevant, write `N/A` and explain why.
+        For client, connectivity, DNS, route, relay/signal, or self-hosted reports, logs are essential — please include anonymized output from `netbird status -dA`, or a debug bundle via `netbird debug for 1m -AS -U`. Debug bundles are automatically deleted after 30 days.
 
-        For client issues, include anonymized output from `netbird status -dA`.
-        If possible, create a debug bundle and share the upload key from `netbird debug for 1m -AS -U`.
-        Uploaded debug bundles are automatically deleted after 30 days.
+        For UI, dashboard, or documentation reports, leave the pre-filled `N/A`.
+      value: "N/A"
       render: shell
     validations:
       required: true

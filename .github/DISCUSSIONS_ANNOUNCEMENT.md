@@ -1,92 +1,69 @@
-# How to use NetBird Discussions
+# [Meta] Moving to a discussion-first approach for bug reports and feature requests
 
-Welcome to NetBird Discussions. This is the best place for community questions, reproducible bug triage, and product ideas.
+## TL;DR
 
-This space is community-oriented and does not provide an SLA. For NetBird Cloud support, use the official support channel linked from the issue creation page. Security vulnerabilities must be reported through the repository security policy instead of public discussions.
+Starting today, if you want to report a bug or request a feature, please open it as a **GitHub Discussion** rather than an Issue.
 
-## Before you post
+From now on, Issues are for validated, maintainer-curated work items: things the team or a contributor can pick up and act on. Maintainers can still open issues directly when they find something internally or while working on the codebase.
 
-- Search existing discussions and issues, including closed items.
-- Check the relevant NetBird documentation or troubleshooting guide.
-- Add your use case, logs, or reproduction details to an existing discussion when one already exists.
-- Remove or anonymize secrets, tokens, private keys, internal hostnames, public IPs, and customer/user data from logs, screenshots, and configuration.
+For the full workflow, see [How to use Discussions, Issues, and Pull Requests](https://github.com/netbirdio/netbird/blob/main/.github/DISCUSSIONS_GUIDE.md).
 
-## Choose the right category
+## Why we're doing this
 
-### Q&A / Support
+We currently have more than 1,400 open issues. Some are confirmed bugs, some are feature requests, some are duplicates, and many are reports that went stale while waiting for reproduction steps or more context.
 
-Use **Q&A / Support** for configuration help, setup questions, self-hosting questions, troubleshooting, and general NetBird usage.
+That makes the Issues tab hard to use. Real problems get buried, newcomers have trouble finding existing reports, and maintainers spend too much time sorting through unvalidated issues instead of fixing the ones we already know are actionable.
 
-Use this category when:
+This is not about pushing community reports away. It's about creating a cleaner path from report → validation → fix.
 
-- You are asking "how do I configure this?"
-- You are not sure whether the behavior is a bug.
-- The problem is not reproducible yet.
-- You need help understanding expected behavior.
-- You are troubleshooting a self-hosted, IdP, DNS, routing, firewall, or client setup.
+We want the Issues tab to answer one question clearly:
 
-Helpful details to include:
+> What is the team working on?
 
-- What you are trying to accomplish
-- Deployment type: NetBird Cloud, self-hosted, local development, or unknown
-- NetBird versions, if available
-- Operating systems and environments involved
-- What you already tried
-- Relevant anonymized logs, command output, screenshots, or topology details
+Discussions are a better place for reports that still need reproduction, environment details, community confirmation, or prioritization.
 
-### Issue Triage
+## What's changing
 
-Use **Issue Triage** only for reproducible bugs and regressions.
+- **Bug reports and feature requests** should now start in [GitHub Discussions](https://github.com/netbirdio/netbird/discussions).
+- The **DevRel team and maintainers will triage discussions**, ask follow-up questions, check for duplicates, and try to reproduce bugs.
+- **Validated reports will be promoted to Issues** once they are confirmed and actionable.
+- **Maintainers can still open issues directly** when the work is already understood or found internally.
+- Issues opened without enough validation or maintainer context may be closed with a redirect to Discussions.
 
-Post here when:
+## Discussion categories
 
-- You can provide the smallest set of steps that reproduces the bug.
-- You can describe the current behavior and expected behavior.
-- You reproduced the issue on a current/supported NetBird version, or can explain why you cannot upgrade.
-- You can provide relevant environment/topology details.
-- You can include logs, status output, debug evidence, or explain why they are not relevant.
+Please choose the category that best fits your post:
 
-Intermittent issues are welcome only when you can include:
+- **Issue Triage** — reproducible bugs, regressions, and unexpected behavior.
+- **Ideas & Feature Requests** — feature requests, enhancements, integrations, and product ideas.
+- **Q&A / Support** — setup, configuration, troubleshooting, self-hosting, and general usage questions.
 
-- Trigger or suspected trigger
-- Frequency
-- Timing or timestamps
-- Relevant logs/debug evidence
+If you're not sure whether something is a bug, start with **Q&A / Support**. We can always move it into triage if it turns out to be a reproducible product issue.
 
-Do **not** use Issue Triage for configuration questions, how-to questions, feature requests, private support, or security vulnerabilities.
+## What about the existing 1,400+ issues?
 
-DevRel or maintainers may redirect, merge, or close Issue Triage discussions that are duplicates, support/configuration questions, not reproducible, or missing required reproduction details. Validated reports may be promoted to GitHub issues.
+We're not doing a mass-close.
 
-Useful commands for client-related reports:
+Now that new unvalidated reports have a better place to start, we can work through the existing backlog more carefully. Some issues will stay open, some may be moved back to discussions for re-validation, some will be merged into newer reports, and some will be closed if they are no longer actionable.
 
-```shell
-netbird version
-netbird status -dA
-netbird debug for 1m -AS -U
-```
+That cleanup will happen gradually — we'd rather do it carefully and keep useful context than rush through it.
 
-Uploaded debug bundles are automatically deleted after 30 days.
+## Multi-repo note
 
-### Ideas & Feature Requests
+All community discussions should live in this repository (`netbirdio/netbird`), even if the affected component is somewhere else.
 
-Use **Ideas & Feature Requests** for product ideas, enhancements, integrations, and workflow improvements.
+When a discussion is validated and promoted to an issue, the issue will be created in the repository where the fix belongs: core, operator, dashboard, or another NetBird repo. You don't need to know which repo owns the fix before reporting something. Sorting that out is part of triage.
 
-A strong request explains:
+## We're not the first to do this
 
-- The problem or use case
-- Who is affected
-- Why current behavior or workarounds are not enough
-- The proposed workflow, API, UI, or integration
-- Any security, privacy, compatibility, or operational considerations
+Other projects have moved to a similar model, including [Ghostty](https://github.com/ghostty-org/ghostty/issues/3558) and [Renovate](https://github.com/renovatebot/renovate/discussions/40306). We're following a pattern that has worked for large, active open source projects with busy issue trackers.
 
-If a similar idea already exists, upvote it and add your use case there instead of opening a duplicate discussion.
+## What we're asking from the community
 
-## What happens after you post
+- **Open new bug reports and feature requests as discussions.** Issues opened directly may be closed and redirected.
+- **Include enough detail to reproduce the problem.** For bugs, please include your OS, NetBird version, deployment type, reproduction steps, expected behavior, actual behavior, and relevant logs.
+- **Search before posting.** If a similar discussion already exists, upvote it and add your use case there.
+- **Use reactions and comments to show impact.** Community traction helps us understand which reports affect the most users.
+- **Be patient while we transition.** This process is meant to reduce noise, not add bureaucracy.
 
-- Community members, DevRel, or maintainers may ask follow-up questions.
-- Duplicate reports may be merged or redirected to an existing discussion/issue.
-- Support or configuration questions posted in Issue Triage may be redirected to Q&A / Support.
-- Reproducible, actionable bug reports may be promoted to GitHub issues.
-- Ideas with strong community traction and clear use cases may influence roadmap or maintainer-curated issues.
-
-Thanks for helping keep NetBird Discussions searchable, useful, and actionable.
+If you have questions or feedback about the change, drop a comment below — we're listening.
